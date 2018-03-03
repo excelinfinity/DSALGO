@@ -16,7 +16,6 @@ public class ArrayRotationSearch {
         // values of array
         String a = br.readLine();
         StringTokenizer st = new StringTokenizer(a);
-        pw.println(a);
         int[] arr = new int[n];
         int i = 0;
         while (st.hasMoreTokens()) {
@@ -25,8 +24,9 @@ public class ArrayRotationSearch {
         }
         //search index of?
         int val = Integer.parseInt(new StringTokenizer(br.readLine()).nextToken());
-        //
-        int index =findIndex(arr,n,val);//no need to pass n;but I am lazy to remove it.
+        // get index
+        //int index =findIndex(arr,n,val);//no need to pass n;but I am lazy to remove it.
+        int index = findIndex2(arr,0,n-1,val);
         pw.print(index);
         pw.flush();
     }
@@ -60,5 +60,19 @@ public class ArrayRotationSearch {
         if(arr[mid]<val)
             return binarySearch(arr,mid+1,end,val);
         return binarySearch(arr,start,mid-1,val);
+    }
+
+    public static int findIndex2(int []arr,int start,int end,int val){
+        if(end<start) return -1;
+        int mid = (start+end)/2;
+        if(arr[mid]==val) return mid;
+        if(arr[start]<arr[mid]) {
+            if (arr[mid] > val && arr[start] <= val)
+                return binarySearch(arr, start, mid - 1, val);
+            return findIndex2(arr,mid+1,end,val);
+        }
+        if(arr[end] >= val && arr[mid] < val)
+            return binarySearch(arr,mid+1,end,val);
+        return findIndex2(arr,start,mid-1,val);
     }
 }
