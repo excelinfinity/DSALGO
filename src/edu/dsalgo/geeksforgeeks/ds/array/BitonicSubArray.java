@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BiotonicSubArray {
+public class BitonicSubArray {
     public static void main(String... str) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter pw = new PrintWriter(System.out);
